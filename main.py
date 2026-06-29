@@ -2,6 +2,8 @@ import pygame # pyright: ignore[reportMissingImports]
 from constants import SCREEN_HEIGHT, SCREEN_WIDTH
 from logger import log_state
 from player import Player
+from asteroid import Asteroid
+from asteroidfield import AsteroidField
 
 
 def main() -> None:
@@ -11,6 +13,11 @@ def main() -> None:
 
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
+
+    Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = updatable
+    asteroid_field = AsteroidField()
 
     Player.containers = (updatable, drawable)
 
