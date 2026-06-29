@@ -3,7 +3,6 @@ import random
 import pygame # pyright: ignore[reportMissingImports]
 from circleshape import CircleShape
 from constants import ASTEROID_MIN_RADIUS, LINE_WIDTH
-from logger import log_event
 
 class Asteroid(CircleShape):
     def __init__(self, x: float, y: float, radius: float) -> None:
@@ -20,8 +19,6 @@ class Asteroid(CircleShape):
 
         if self.radius <= ASTEROID_MIN_RADIUS:
             return
-        
-        log_event("asteroid_split")
         
         random_angle = random.uniform(20, 50)
         

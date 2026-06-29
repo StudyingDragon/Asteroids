@@ -4,7 +4,6 @@ import pygame # pyright: ignore[reportMissingImports]
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
 from constants import SCREEN_HEIGHT, SCREEN_WIDTH
-from logger import log_event, log_state
 from player import Player
 from shot import Shot
 
@@ -31,8 +30,6 @@ def main() -> None:
     dt = 0.0
 
     while True:
-        log_state()
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
@@ -41,13 +38,11 @@ def main() -> None:
 
         for asteroid in asteroids:
             if asteroid.collides_with(player):
-                log_event("player_hit")
                 print("Game over!")
                 sys.exit()
 
             for shot in shots:
                 if asteroid.collides_with(shot):
-                    log_event("asteroid_shot")
                     shot.kill()
                     asteroid.split()
 
@@ -58,7 +53,6 @@ def main() -> None:
 
         pygame.display.flip()
 
-        # limit the framerate to 60 FPS
         dt = clock.tick(60) / 1000
 
 
